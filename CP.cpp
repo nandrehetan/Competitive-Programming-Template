@@ -181,7 +181,7 @@ bool isPrime(int n)
  
     return true;
 }
-void solve()
+void tourist_killer()
 {
  
 }
@@ -196,7 +196,7 @@ int main()
    cin >> t;
    while(t--)
    {
-      solve();
+      tourist_killer();
    }
    return 0; 
 }
