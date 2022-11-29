@@ -1,7 +1,3 @@
-/******************************************
-*    AUTHOR:         HETAN HEMANT NANDRE  *
-*    INSTITUITION:   VIT PUNE             *
-******************************************/
 // #pragma GCC optimize("Ofast")
 // #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,fma")
 // #pragma GCC optimize("unroll-loops")
@@ -200,6 +196,11 @@ int main()
    }
    return 0; 
 }
+
+/******************************************
+*    HETAN HEMANT NANDRE aka tourist 2.0  *
+*    INSTITUITION:   VIT PUNE             *
+******************************************/
 
 
 
