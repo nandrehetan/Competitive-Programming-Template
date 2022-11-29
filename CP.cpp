@@ -1,39 +1,39 @@
-// Author - Hetan Hemant Nandre
-#pragma GCC optimize("Ofast")
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,fma")
-#pragma GCC optimize("unroll-loops")
+/******************************************
+*    AUTHOR:         HETAN HEMANT NANDRE  *
+*    INSTITUITION:   VIT PUNE             *
+******************************************/
+// #pragma GCC optimize("Ofast")
+// #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,fma")
+// #pragma GCC optimize("unroll-loops")
 
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
  
-using namespace __gnu_pbds;
-using namespace std; 
+// using namespace __gnu_pbds;
+using namespace std;
 //Hetan Nandre's code 
-
-
 
 // Aliases
 using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 
-
 // Constants 
 #define INF 1e18
 #define EPS 1e-9
 #define MOD 1000000007
 
-
 // Macros
 #define all(x) begin(x), end(x)
 #define allr(x) rbegin(x), rend(x)
 #define pb push_back
-#define MAX 50
+#define MAX 1e18
 #define MP make_pair
 #define rep(i,s,e)   for(int i=s;i<e;i++)
 #define repr(i,s,e)  for(int i=s;i>=e;i--)
 typedef vector<int>vi;
+
 
 template <typename T> // cin >> vector<T>
 istream &operator>>(istream &istream, vector<T> &v)
@@ -51,7 +51,6 @@ ostream &operator<<(ostream &ostream, const vector<T> &c)
    return ostream;
 }
 
-
 // Mathematical functions
 int GCD(int a, int b)
 {
@@ -62,8 +61,6 @@ int GCD(int a, int b)
    }
    return a;
 }
- 
-
 int GCD_extended(int a, int b, int &x, int &y)
 {
    x = 1, y = 0;
@@ -77,8 +74,6 @@ int GCD_extended(int a, int b, int &x, int &y)
    }
    return a1;
 }
-
-
 int LCM(int a, int b)
 {
    return ((ll)a * b) / GCD(a, b);
@@ -111,11 +106,9 @@ int getRandomNumber(int l, int r)
    return dist(rng);
 }
 
-
 ll binToDec(string s) { return bitset<64>(s).to_ullong(); }
 string decToBin(ll a) { return bitset<64>(a).to_string(); }
  
-
 int fact(ll n)
 {
       if(n==0)
@@ -129,6 +122,21 @@ int fact(ll n)
 int nCr(ll n, ll r)
 {
     return fact(n) / (fact(r) * fact(n - r));
+}
+
+ll binarySearch(ll arr[], ll l, ll r, ll x)
+{
+    while (l <= r) {
+        ll m = l + (r - l) / 2;
+       
+        if (arr[m] == x)
+            return m; 
+        if (arr[m] < x)
+            l = m + 1;
+        else
+            r = m - 1;
+    }
+    return -1;
 }
 
 int maxSubArraySum(vector <int> a, int size)
@@ -146,24 +154,43 @@ int maxSubArraySum(vector <int> a, int size)
     return max_so_far;
 }
 
-void solve()
+int longSubSeq(int arr[], int n)
 {
-   
+    int lis[n];
+    lis[0] = 1;
+    for (int i = 1; i < n; i++) {
+        lis[i] = 1;
+        for (int j = 0; j < i; j++)
+            if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
+                lis[i] = lis[j] + 1;
+    }
+    return *max_element(lis, lis + n);
 }
 
+bool isPrime(int n)
+{
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+    for (int i = 5; i * i <= n; i = i + 6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+ 
+    return true;
+}
+void solve()
+{
+ 
+}
 
 
 int main()
 {
    ios::sync_with_stdio(0);
    cin.tie(0);
-   #ifndef ONLINE_JUDGE 
-   // for getting input from input.txt
-   freopen("input.txt", "r", stdin);
-   // for writing output to output.txt
-   freopen("output.txt", "w", stdout);
-   #endif
-   
    ll t;
    t=1;
    cin >> t;
@@ -171,4 +198,18 @@ int main()
    {
       solve();
    }
+   return 0; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
