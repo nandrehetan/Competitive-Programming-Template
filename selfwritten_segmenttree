@@ -1,0 +1,58 @@
+struct node{
+        int sum;
+        node(){
+            sum=0;
+        }
+    };
+
+    node merge(node a, node b){
+        node ans;
+        ans.sum=a.sum+b.sum;
+        return ans;
+    }
+
+    node st[4*200200];
+
+    void build(int ind,int l,int r){
+        if(l==r){
+            //Leaf node
+            st[ind].sum=0;
+            return;
+        }
+        int mid=(l+r)/2;
+        build(2*ind,l,mid);
+        build(2*ind+1,mid+1,r);
+        st[ind]=merge(st[2*ind],st[2*ind+1]);
+
+    }
+
+
+    void update(int ind,int l,int r,int pos,int val){
+        if(pos<l || pos>r){
+            return;
+        }
+        if(l==r){
+            st[ind].sum += val;
+            return;
+        }
+
+        int mid=(l+r)/2;
+        update(ind,l,mid,pos,val);
+        update(ind,mid+1,r,pos,val);
+        st[ind]=merge(st[2*ind],st[2*ind+1]);
+
+    }
+
+    node query(int ind,int l,int r,int lq,int rq){
+        if(lq>r || rq<l){
+            return node();
+        }
+        int mid=(l+r)/2;
+
+        if(l>=lq && rq>=r){
+            return st[ind];
+        }
+
+        return merge(query(2*ind,l,mid,lq,rq),query(2*ind+1,mid+1,r,lq,rq));
+
+    }
